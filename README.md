@@ -1,0 +1,1 @@
+# gradle-i18n-plugin
