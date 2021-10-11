@@ -7,6 +7,7 @@
  */
 
 plugins {
+    id("com.gradle.plugin-publish") version "0.16.0"
     `java-gradle-plugin`
     `maven-publish`
 
@@ -21,7 +22,7 @@ repositories {
 }
 
 group = "dk.acto"
-version = "1.0"
+version = System.getProperty("versionOverride")?.trim() ?: "1.0"
 
 dependencies {
     // Align versions of all Kotlin components
@@ -36,10 +37,25 @@ dependencies {
 }
 
 gradlePlugin {
-    // Define the plugin
-    val greeting by plugins.creating {
-        id = "dk.acto.gradle.i18nplugin"
-        implementationClass = "dk.acto.gradle.i18nplugin.I18nPlugin"
+    plugins {
+        create("i18nPlugin") {
+            id = "dk.acto.gradle.i18nplugin"
+            implementationClass = "dk.acto.gradle.i18nplugin.I18nPlugin"
+        }
+    }
+}
+
+pluginBundle {
+    website = "https://github.com/actoaps/gradle-i18n-plugin"
+    vcsUrl = "https://github.com/actoaps/gradle-i18n-plugin"
+
+    description = "Generates a JSON file with internationalized texts, based on a Google Sheet."
+
+    (plugins) {
+        "i18nPlugin" {
+            displayName = "Gradle I18n Plugin"
+            tags = listOf("gsheet", "i18n")
+        }
     }
 }
 

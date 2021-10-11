@@ -23,11 +23,11 @@ Considering the above example, a JSON file of the following structure would be g
 }
 ```
 
-NOTE: Blank cells are being filtered out, so make sure that you don't have only partially filled rows.
+NOTE: Blank cells will be filtered out, so make sure that you don't have only partially filled rows.
 
 ## Setup
 To integrate the plugin into your setup, simply add it as a plugin in your `build.gradle` file.
-```groovy
+```gradle
 plugins {
     id "dk.acto.gradle.i18nplugin" version "1.0"
 }
@@ -46,7 +46,7 @@ The plugin accepts the following parameters for configuration:
 |       keyColumn      |          The column containing the translation keys          |            Yes           |
 
 Example configuration:
-```groovy
+```gradle
 i18n {
   driveCredentialsFile = layout.projectDirectory.file("driveCredentials.json")
   outputFile = layout.projectDirectory.file("languageCache.json")
